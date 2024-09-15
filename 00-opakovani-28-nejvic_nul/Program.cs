@@ -21,7 +21,7 @@
             int maxNumber = 0;
             int maxIndex = 0;
 
-            if (typ == false) 
+            if (typ == false)
             {
                 int[] pocetNul = new int[cisla.GetLength(0)];
                 int nuly = 0;
@@ -51,7 +51,7 @@
             }
             else
             {
-                int[]pocetNul = new int[cisla.GetLength(1)];
+                int[] pocetNul = new int[cisla.GetLength(1)];
                 int nuly = 0;
 
                 for (int i = 0; i < cisla.GetLength(1); i++)
@@ -77,7 +77,7 @@
                 }
                 return maxIndex;
             }
-            
+
         }
 
     }
