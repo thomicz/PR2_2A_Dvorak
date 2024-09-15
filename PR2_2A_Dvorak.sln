@@ -51,15 +51,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "00-opakovani-21-vypisovaci_
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "00-opakovani-22-nacitaci_metoda", "00-opakovani-22-nacitaci_metoda\00-opakovani-22-nacitaci_metoda.csproj", "{EEA369DF-ACC7-4810-B3D6-F19AE563CC1B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "00-opakovani-23-metody_koule", "00-opakovani-metody_koule\00-opakovani-23-metody_koule.csproj", "{FAF74DF4-03A2-4F49-BECE-8513BB0C4C8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "00-opakovani-24-faktorial", "00-opakovani-24-faktorial\00-opakovani-24-faktorial.csproj", "{2C0845E3-A117-4ACD-A724-C89424BE8F9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "00-opakovani-24-faktorial", "00-opakovani-24-faktorial\00-opakovani-24-faktorial.csproj", "{2C0845E3-A117-4ACD-A724-C89424BE8F9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "00-opakovani-25-vsechna_mensi_nez", "00-opakovani-25-vsechna_mensi_nez\00-opakovani-25-vsechna_mensi_nez.csproj", "{76A5B472-1525-4236-9298-8246F7B0EB56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "00-opakovani-25-vsechna_mensi_nez", "00-opakovani-25-vsechna_mensi_nez\00-opakovani-25-vsechna_mensi_nez.csproj", "{76A5B472-1525-4236-9298-8246F7B0EB56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "00-opakovani-26-nacitani_sudych", "00-opakovani-26-nacitani_sudych\00-opakovani-26-nacitani_sudych.csproj", "{29CB28D6-EE4E-4B2C-93E0-C897DBB897B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "00-opakovani-26-nacitani_sudych", "00-opakovani-26-nacitani_sudych\00-opakovani-26-nacitani_sudych.csproj", "{29CB28D6-EE4E-4B2C-93E0-C897DBB897B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "00-opakovani-27-vypis_podle_znaku", "00-opakovani-27-vypis_podle_znaku\00-opakovani-27-vypis_podle_znaku.csproj", "{C60333D3-6DB1-475C-86B0-E4267E02753A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "00-opakovani-27-vypis_podle_znaku", "00-opakovani-27-vypis_podle_znaku\00-opakovani-27-vypis_podle_znaku.csproj", "{C60333D3-6DB1-475C-86B0-E4267E02753A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "00-opakovani-23-metody_koule", "00-opakovani-23-metody_koule\00-opakovani-23-metody_koule.csproj", "{7ABB55A5-0EAC-48B4-A7C0-1984EB97108C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -159,10 +159,6 @@ Global
 		{EEA369DF-ACC7-4810-B3D6-F19AE563CC1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEA369DF-ACC7-4810-B3D6-F19AE563CC1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEA369DF-ACC7-4810-B3D6-F19AE563CC1B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FAF74DF4-03A2-4F49-BECE-8513BB0C4C8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FAF74DF4-03A2-4F49-BECE-8513BB0C4C8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FAF74DF4-03A2-4F49-BECE-8513BB0C4C8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FAF74DF4-03A2-4F49-BECE-8513BB0C4C8C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2C0845E3-A117-4ACD-A724-C89424BE8F9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2C0845E3-A117-4ACD-A724-C89424BE8F9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C0845E3-A117-4ACD-A724-C89424BE8F9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -179,6 +175,10 @@ Global
 		{C60333D3-6DB1-475C-86B0-E4267E02753A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C60333D3-6DB1-475C-86B0-E4267E02753A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C60333D3-6DB1-475C-86B0-E4267E02753A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ABB55A5-0EAC-48B4-A7C0-1984EB97108C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ABB55A5-0EAC-48B4-A7C0-1984EB97108C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ABB55A5-0EAC-48B4-A7C0-1984EB97108C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ABB55A5-0EAC-48B4-A7C0-1984EB97108C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -207,11 +207,11 @@ Global
 		{EB8A57F1-23AA-4E6A-A1EF-88A5808F7B18} = {1E99F166-1ED2-45F4-AD85-DA01DEE0F0A4}
 		{8DAD1665-C5C6-4BD4-AA70-79A822EF06E8} = {1E99F166-1ED2-45F4-AD85-DA01DEE0F0A4}
 		{EEA369DF-ACC7-4810-B3D6-F19AE563CC1B} = {1E99F166-1ED2-45F4-AD85-DA01DEE0F0A4}
-		{FAF74DF4-03A2-4F49-BECE-8513BB0C4C8C} = {1E99F166-1ED2-45F4-AD85-DA01DEE0F0A4}
 		{2C0845E3-A117-4ACD-A724-C89424BE8F9C} = {1E99F166-1ED2-45F4-AD85-DA01DEE0F0A4}
 		{76A5B472-1525-4236-9298-8246F7B0EB56} = {1E99F166-1ED2-45F4-AD85-DA01DEE0F0A4}
 		{29CB28D6-EE4E-4B2C-93E0-C897DBB897B6} = {1E99F166-1ED2-45F4-AD85-DA01DEE0F0A4}
 		{C60333D3-6DB1-475C-86B0-E4267E02753A} = {1E99F166-1ED2-45F4-AD85-DA01DEE0F0A4}
+		{7ABB55A5-0EAC-48B4-A7C0-1984EB97108C} = {1E99F166-1ED2-45F4-AD85-DA01DEE0F0A4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {703CF764-4886-4C08-8994-027A84069665}
