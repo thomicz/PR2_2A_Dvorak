@@ -10,7 +10,7 @@
         }
         public static double Povrch(double polomer)
         {
-            return 4 * Math.PI *  Math.Pow(polomer, 2);
+            return 4 * Math.PI * Math.Pow(polomer, 2);
         }
 
         public static double Objem(double polomer)
