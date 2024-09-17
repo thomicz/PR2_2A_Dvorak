@@ -25,7 +25,7 @@
             {
                 Console.Write($"{pole[i]} ");
             }
-        
+
             for (int i = 0; i < pole.Length; i++)
             {
                 if (pole[i] < min)
@@ -48,7 +48,7 @@
                     liche++;
                 }
             }
-            
+
             Console.WriteLine($"\nNejmenší číslo je {min}, průměrné je {soucet / pole.Length} a nejvyšší je {max}.");
             Console.WriteLine($"V poli je {sude} sudých a {liche} čísel.");
         }

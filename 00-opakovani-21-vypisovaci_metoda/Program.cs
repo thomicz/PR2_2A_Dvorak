@@ -6,9 +6,9 @@
         {
             VypisTextu("Hello World!");
         }
-        public static void VypisTextu (string text)
+        public static void VypisTextu(string text)
         {
-        Console.WriteLine(text);
+            Console.WriteLine(text);
         }
     }
 }
