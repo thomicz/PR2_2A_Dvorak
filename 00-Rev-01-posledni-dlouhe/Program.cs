@@ -1,13 +1,11 @@
-﻿using System.Reflection.Metadata;
-
-namespace _00_Rev_01_posledni_dlouhe
+﻿namespace _00_Rev_01_posledni_dlouhe
 {
     internal class Program
     {
         static void Main(string[] args)
         {
             int limit = 4;
-            string[] pole = { "dobry", "den", "jak", "se", "dnes", "mate", "?"};
+            string[] pole = { "dobry", "den", "jak", "se", "dneska", "mate", "?" };
             Console.WriteLine($"{PosledniDlouhe(pole, limit)}");
 
         }

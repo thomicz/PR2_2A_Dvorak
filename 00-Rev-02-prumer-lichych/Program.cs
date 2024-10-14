@@ -6,7 +6,7 @@
         {
             string value;
             int cislo;
-            double  soucetLichychKladnych = 0;
+            double soucetLichychKladnych = 0;
             double pocetLichychKladnych = 0;
 
             while (true)
@@ -27,7 +27,7 @@
                     pocetLichychKladnych++;
                 }
             }
-            
+
             if (pocetLichychKladnych == 0)
             {
                 Console.WriteLine("Nebylo vloženo žádné kladné liché číslo");
@@ -36,8 +36,8 @@
             {
                 Console.WriteLine($"Průměr: {soucetLichychKladnych / pocetLichychKladnych}");
             }
-        
-        
+
+
         }
     }
 }
