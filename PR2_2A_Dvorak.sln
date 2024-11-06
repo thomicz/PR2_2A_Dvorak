@@ -81,13 +81,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "00-Rev-02-prumer-lichych", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01-OOP-06-paginator", "01-OOP-06-paginator\01-OOP-06-paginator.csproj", "{A8EA957D-BC75-463E-AA9C-91C3EE4422F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01-OOP-09-string_ref", "01-OOP-09-string_ref\01-OOP-09-string_ref.csproj", "{82C81EDA-3413-486B-8627-A2F93CCF6C49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01-OOP-09-string_ref", "01-OOP-09-string_ref\01-OOP-09-string_ref.csproj", "{82C81EDA-3413-486B-8627-A2F93CCF6C49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01-OOP-10-prodlouzeni_retezce", "01-OOP-10-prodlouzeni_retezce\01-OOP-10-prodlouzeni_retezce.csproj", "{9C00CB06-7E48-4648-B2D5-36D700F9CE0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01-OOP-10-prodlouzeni_retezce", "01-OOP-10-prodlouzeni_retezce\01-OOP-10-prodlouzeni_retezce.csproj", "{9C00CB06-7E48-4648-B2D5-36D700F9CE0D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_Dedicnost", "02_Dedicnost", "{855AA32F-0539-4A89-9AD3-F01A368C009B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-Dedicnost-01-savec", "02-Dedicnost-01-savec\02-Dedicnost-01-savec.csproj", "{35206CC7-F211-4925-B6BF-08BA13BDAB20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02-Dedicnost-01-savec", "02-Dedicnost-01-savec\02-Dedicnost-01-savec.csproj", "{35206CC7-F211-4925-B6BF-08BA13BDAB20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-Dedicnost-01-Obdelnik_a_ctverec", "02-Dedicnost-01-Obdelnik_a_ctverec\02-Dedicnost-01-Obdelnik_a_ctverec.csproj", "{0AF02AFE-7A1E-4FC1-849D-401CA481C7A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -251,6 +253,10 @@ Global
 		{35206CC7-F211-4925-B6BF-08BA13BDAB20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35206CC7-F211-4925-B6BF-08BA13BDAB20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35206CC7-F211-4925-B6BF-08BA13BDAB20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AF02AFE-7A1E-4FC1-849D-401CA481C7A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AF02AFE-7A1E-4FC1-849D-401CA481C7A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AF02AFE-7A1E-4FC1-849D-401CA481C7A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AF02AFE-7A1E-4FC1-849D-401CA481C7A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -295,6 +301,7 @@ Global
 		{82C81EDA-3413-486B-8627-A2F93CCF6C49} = {D8FA2632-632C-4FD8-AEC6-16B2464D2264}
 		{9C00CB06-7E48-4648-B2D5-36D700F9CE0D} = {D8FA2632-632C-4FD8-AEC6-16B2464D2264}
 		{35206CC7-F211-4925-B6BF-08BA13BDAB20} = {855AA32F-0539-4A89-9AD3-F01A368C009B}
+		{0AF02AFE-7A1E-4FC1-849D-401CA481C7A4} = {855AA32F-0539-4A89-9AD3-F01A368C009B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {703CF764-4886-4C08-8994-027A84069665}
