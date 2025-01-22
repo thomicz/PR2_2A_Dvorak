@@ -6,7 +6,7 @@
 
         public void Urokuj()
         {
-            Stav *= 1.35;
+            Stav += Stav * UrokovaMira / 100;
         }
     }
 }

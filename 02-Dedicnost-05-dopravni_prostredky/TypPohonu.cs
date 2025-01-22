@@ -1,0 +1,1 @@
+﻿public enum TypPohonu { Manualni, SpalovaciMotor, Elektromotor };
