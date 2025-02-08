@@ -7,10 +7,10 @@
             ID = iD;
         }
 
-        public int DobaProvozu { get; private set; }
+        public int? DobaProvozu { get;  set; } = 0;
 
         public int? DobaVraceni { get; private set; }
-        public int ID { get; private set; }
+        public int ID { get;  set; }
 
         public void Pouzit(int cas, int aktualniCas)
         {

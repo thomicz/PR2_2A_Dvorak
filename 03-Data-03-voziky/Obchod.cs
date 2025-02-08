@@ -11,6 +11,8 @@
             MaxPocetZakaznikuZaMinutu = maxPocetZakaznikuZaMinutu;
             MinDobaNakupu = minDobaNakupu;
             MaxDobaNakupu = maxDobaNakupu;
+
+            voziky = VytvoritVoziky(PocetVoziku);
         }
         public int PocetVoziku { get; set; }
         public int ZacatekProvozu { get; private set; }
@@ -19,7 +21,7 @@
         public int MinDobaNakupu { get; private set; }
         public int MaxDobaNakupu { get; private set; }
 
-        public Stack<Vozik> voziky = VytvoritVoziky(500);
+        public Stack<Vozik> voziky = new Stack<Vozik>();
         public List<Vozik> vozikyPouzite = new List<Vozik>();
 
         public static Stack<Vozik> VytvoritVoziky(int pocetVoziku)
