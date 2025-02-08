@@ -111,6 +111,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_Data", "03_Data", "{4DA6
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03-Data-03-voziky", "03-Data-03-voziky\03-Data-03-voziky.csproj", "{46F34817-84D7-4BC9-907A-B801D8DD6A4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03-Data-04-obchodnici", "03-Data-04-obchodnici\03-Data-04-obchodnici.csproj", "{2D298E62-BE5B-49A2-9E10-EB795F4312E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -313,6 +315,10 @@ Global
 		{46F34817-84D7-4BC9-907A-B801D8DD6A4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46F34817-84D7-4BC9-907A-B801D8DD6A4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46F34817-84D7-4BC9-907A-B801D8DD6A4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D298E62-BE5B-49A2-9E10-EB795F4312E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D298E62-BE5B-49A2-9E10-EB795F4312E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D298E62-BE5B-49A2-9E10-EB795F4312E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D298E62-BE5B-49A2-9E10-EB795F4312E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -367,6 +373,7 @@ Global
 		{7E289812-DE03-4175-ABB6-FB7714D9E9E1} = {550BA6F0-52A5-4CD3-B6E4-552F83F261EB}
 		{49E5EA4A-655C-43F9-AC33-5EE336481989} = {4DA65860-FD52-44BB-97B9-0B73C210A08E}
 		{46F34817-84D7-4BC9-907A-B801D8DD6A4B} = {4DA65860-FD52-44BB-97B9-0B73C210A08E}
+		{2D298E62-BE5B-49A2-9E10-EB795F4312E7} = {4DA65860-FD52-44BB-97B9-0B73C210A08E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {703CF764-4886-4C08-8994-027A84069665}

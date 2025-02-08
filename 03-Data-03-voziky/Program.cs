@@ -2,60 +2,55 @@
 {
     internal class Program
     {
-        Random rnd = new Random(123456);
-        void Main(string[] args)
+        static void Main(string[] args)
         {
-        Stack<int> zakaznici = new Stack<int>();
+            Random rnd = new Random(); //Radnom generátor čísel se seedem 123456
 
-        Obchod obchod = new Obchod();
+            Stack<int> zakaznici = new Stack<int>();
+
+            Obchod obchod = new Obchod(rnd.Next(50, 101), 360, 1080, 50, 10, 30);
+
             int aktualniCas = obchod.ZacatekProvozu;
 
-            while(aktualniCas <= obchod.KonecProvozu)
+            while (aktualniCas <= obchod.KonecProvozu)
             {
-                Cyklus(obchod, zakaznici);
+                //Thread.Sleep(100);
+                Cyklus(obchod, aktualniCas);
                 aktualniCas++;
+                //Console.WriteLine(obchod.voziky.Count);
             }
-           
+
+            Vypsat(obchod);
         }
-        void Cyklus(Obchod obchod, Stack<int> zakaznici)
+        static void Cyklus(Obchod obchod, int aktualniCas)
         {
+            Random rnd = new Random(123456);
+
             int prichoziZakaznici = rnd.Next(1, obchod.MaxPocetZakaznikuZaMinutu);
 
             for (int i = 0; i < prichoziZakaznici; i++)
             {
-                obchod.PocetVoziku--;
-                rnd.Next(obchod.MinDobaNakupu, obchod.MinDobaNakupu + 1);
-                obchod.voziky.Pop();
-                
+                obchod.voziky.Peek().Pouzit(rnd.Next(obchod.MinDobaNakupu, obchod.MinDobaNakupu + 1), aktualniCas);
+                obchod.vozikyPouzite.Add(obchod.voziky.Pop());
 
+                for (int j = 0; j < obchod.vozikyPouzite.Count; j++)
+                {
+                    if (obchod.vozikyPouzite[j].DobaVraceni == aktualniCas)
+                    {
+                        obchod.vozikyPouzite[j].Vratit();
+                        obchod.voziky.Push(obchod.vozikyPouzite[j]);
+                    }
+                }
             }
         }
-    }
-
-    class Obchod
-    {
-        public Stack<int> voziky = new Stack<int>();
-        Random rnd = new Random(123456);
-        public int PocetVoziku { get; set; }
-        public int ZacatekProvozu { get; set; }
-        public int KonecProvozu { get; set; }
-        public int MaxPocetZakaznikuZaMinutu { get; set; }
-        public int MinDobaNakupu { get; set; }
-        public int MaxDobaNakupu { get; set; }
-
-        public void Main()
+        static void Vypsat(Obchod obchod)
         {
-            PocetVoziku = rnd.Next(1, 101);
-            MaxPocetZakaznikuZaMinutu = rnd.Next(1, 51);
-            ZacatekProvozu = 360;
-            KonecProvozu = 1080;
-            MinDobaNakupu = 5;
-            MaxDobaNakupu = 30;
-
-            for (int i = 0; i < PocetVoziku - 1; i++)
+            while (obchod.voziky.Count > 0)
             {
-                voziky.Push(i);
+                Vozik vozik = obchod.voziky.Pop();
+                Console.WriteLine($"{vozik.ID}: {vozik.DobaProvozu} minut");
             }
         }
+    
     }
 }
