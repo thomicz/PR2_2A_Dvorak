@@ -14,10 +14,8 @@
 
             while (aktualniCas <= obchod.KonecProvozu)
             {
-                //Thread.Sleep(100);
                 Cyklus(obchod, aktualniCas);
                 aktualniCas++;
-                //Console.WriteLine(obchod.voziky.Count);
             }
 
             Vypsat(obchod);
@@ -49,14 +47,12 @@
 
         static void Vypsat(Obchod obchod)
         {
-            
-
             for (int i = 0; i < obchod.vozikyPouzite.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {obchod.vozikyPouzite[i].ID}: {obchod.vozikyPouzite[i].DobaProvozu} pracoval minut");
+                Console.WriteLine($" ID{obchod.vozikyPouzite[i].ID}: {obchod.vozikyPouzite[i].DobaProvozu} minut");
 
             }
         }
-    
+
     }
 }
