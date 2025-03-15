@@ -4,7 +4,7 @@ namespace TD_projekt
 {
     internal class Render
     {
-        public void RenderMainInterface(Salesman node, Salesman root, Stack<Salesman> s, List<Salesman> list, Cursor cursor)
+        public void RenderMainInterface(Salesman node, Salesman root, Stack<Salesman> s, List<Salesman> list, Cursor cursor, string path)
         {
             Console.SetCursorPosition(0, 0);
 
@@ -41,47 +41,55 @@ namespace TD_projekt
             Console.WriteLine("-------------------------------------");
             Console.Write($"Obchodník: {node.Name} {node.Surname}");
 
-            if (cursor.Y == 1)
+            if(path != "")
             {
-                if (cursor.X == 0)
+                if (cursor.Y == 1)
                 {
-                    cursor.X = 1;
-                }
+                    if (cursor.X == 0)
+                    {
+                        cursor.X = 1;
+                    }
 
-                if (list.Contains(node))
-                {
-                    Console.SetCursorPosition(30, 2);
-                    Console.BackgroundColor = ConsoleColor.Yellow;
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"Odebrat");
-                    Console.ResetColor();
+                    if (list.Contains(node))
+                    {
+                        Console.SetCursorPosition(30, 2);
+                        Console.BackgroundColor = ConsoleColor.Yellow;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"Odebrat");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(31, 2);
+                        Console.BackgroundColor = ConsoleColor.Yellow;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"Přidat");
+                        Console.ResetColor();
+                    }
                 }
                 else
                 {
-                    Console.SetCursorPosition(31, 2);
-                    Console.BackgroundColor = ConsoleColor.Yellow;
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"Přidat");
-                    Console.ResetColor();
+                    if (list.Contains(node))
+                    {
+                        Console.SetCursorPosition(30, 2);
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"Odebrat");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(31, 2);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"Přidat");
+                        Console.ResetColor();
+                    }
                 }
             }
             else
             {
-                if(list.Contains(node))
-                {
-                    Console.SetCursorPosition(30, 2);
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"Odebrat");
-                    Console.ResetColor();
-                }
-                else
-                {
-                    Console.SetCursorPosition(31, 2);
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"Přidat");
-                    Console.ResetColor();
-                }
+                Console.WriteLine();
             }
+           
 
             Console.WriteLine("-------------------------------------");
             Console.WriteLine($"Přímé prodeje: {node.Sales}$");
@@ -150,8 +158,7 @@ namespace TD_projekt
 
         public void RenderList(List<Salesman> list, Cursor c, Tree t)
         {
-            Console.Clear();
-
+            Console.SetCursorPosition(0,0);
             if (c.X == 0 && c.Y == 0)
             {
                 Console.BackgroundColor = ConsoleColor.Yellow;
@@ -218,9 +225,26 @@ namespace TD_projekt
             Console.WriteLine($"Seznam: {t.Path}");
             Console.WriteLine("-----------------------------------------------------------------");
 
+           
+            Console.Write("Obsah: ");
+
+            if (list.Count == 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("-----------------------------------------------------------------");
+
+            }
             for (int i = 0; i < list.Count; i++)
             {
-                Console.WriteLine($"{list[i].Name} {list[i].Surname}");
+                if(i == 0)
+                {
+                    Console.WriteLine($"{list[i].Name} {list[i].Surname}");
+                }
+                else
+                {
+                    Console.WriteLine($"       {list[i].Name} {list[i].Surname}");
+
+                }
             }
 
             if (list.Count > 0)

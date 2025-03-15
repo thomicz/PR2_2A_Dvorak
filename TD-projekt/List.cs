@@ -52,15 +52,19 @@ namespace TD_projekt
         {
             string filePath = t.Path;
 
-            using (StreamWriter writer = new StreamWriter(filePath))
+            if (filePath != "")
             {
-                for (int i = 0; i < list.Count; i++)
+                using (StreamWriter writer = new StreamWriter(filePath))
                 {
-                    Salesman s = list[i];
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        Salesman s = list[i];
 
-                    writer.WriteLine($"{s.ID}");
+                        writer.WriteLine($"{s.ID}");
+                    }
                 }
             }
+
 
             return true;
         }
@@ -99,15 +103,22 @@ namespace TD_projekt
 
         public bool CreateList(Tree t)
         {
-            Console.Write($"Zadej název souboru: ");
+
+            Console.WriteLine($"Zadej název souboru: ");
             string? input = Console.ReadLine();
+
 
 
 
             try
             {
-                File.Create($"{input}.txt");
+                using (FileStream fs = File.Create($"{input}.txt"))
+                {
+                    fs.Close();
+                }
+
                 t.Path = input + ".txt";
+                t.List.Clear();
 
                 return true;
 
@@ -143,7 +154,7 @@ namespace TD_projekt
                 }
             }
 
-            return null; 
+            return null;
         }
 
     }

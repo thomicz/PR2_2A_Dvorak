@@ -7,7 +7,7 @@ namespace TD_projekt
         public int X { get; set; } = 0;
         public int Y { get; set; } = 0;
 
-        public void FixCursorPosition(List <Salesman> s)
+        public void FixCursorPosition(List<Salesman> s)
         {
             if (s.Count == 0)
             {

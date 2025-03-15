@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using TD_projekt;
+﻿using TD_projekt;
 
 namespace _03_Data_03_Obchodnici
 {
@@ -15,7 +14,7 @@ namespace _03_Data_03_Obchodnici
             Render r = new Render();
             List l = new List();
 
-            r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, main);
+            r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, main, t.Path);
 
             while (true)
             {
@@ -25,7 +24,11 @@ namespace _03_Data_03_Obchodnici
                 {
                     if (main.Y > 0)
                     {
-                        if (t.Stack.Count == 0 && main.Y == 3)
+                        if (t.Stack.Count == 0 && main.Y == 3 && t.Path == "")
+                        {
+                            main.Y -= 3;
+                        }
+                        else if ((t.Stack.Count == 0 && main.Y == 3) || (t.Path == "" && main.Y == 3))
                         {
                             main.Y -= 2;
                         }
@@ -37,14 +40,22 @@ namespace _03_Data_03_Obchodnici
                 }
                 else if (keyInfo.Key == ConsoleKey.DownArrow)
                 {
-                    if (t.Stack.Count == 0 && main.Y == 1)
+                    if (main.Y < t.Node.Subordinates.Count + 2)
                     {
-                        main.Y += 2;
+                        if (t.Stack.Count == 0 && main.Y == 0 && t.Path == "")
+                        {
+                            main.Y += 3;
+                        }
+                        else if (t.Stack.Count == 0 && main.Y == 1)
+                        {
+                            main.Y += 2;
+                        }
+                        else
+                        {
+                            main.Y++;
+                        }
                     }
-                    else
-                    {
-                        main.Y++;
-                    }
+
                 }
                 else if (keyInfo.Key == ConsoleKey.RightArrow)
                 {
@@ -64,8 +75,7 @@ namespace _03_Data_03_Obchodnici
                 else if (keyInfo.Key == ConsoleKey.R)
                 {
                     Console.Clear();
-                    r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, main);
-
+                    r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, main, t.Path);
                 }
                 else if (keyInfo.Key == ConsoleKey.Escape)
                 {
@@ -82,17 +92,21 @@ namespace _03_Data_03_Obchodnici
                     }
                     else if (main.Y == 0 && main.X == 1) //Přejít na seznam
                     {
+                        Console.Clear();
                         List(list, r, t, l);
                     }
                     else if (main.Y == 1 && main.X == 1) //Přidat
                     {
-                        if (!t.List.Contains(t.Node))
+                        if (t.Path != "")
                         {
-                            l.AddSalesmanToList(t.Node, t.List);
-                        }
-                        else
-                        {
-                            l.RemoveSalesmanFromList(t.Node, t.List);
+                            if (!t.List.Contains(t.Node))
+                            {
+                                l.AddSalesmanToList(t.Node, t.List);
+                            }
+                            else
+                            {
+                                l.RemoveSalesmanFromList(t.Node, t.List);
+                            }
                         }
                     }
                     else if (main.Y == 2) //Přejít na nadřízeného
@@ -100,11 +114,13 @@ namespace _03_Data_03_Obchodnici
                         try
                         {
                             t.Node = t.Stack.Pop();
-                            r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, main);
+                            r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, main, t.Path);
+
                         }
                         catch
                         {
-                            r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, main);
+                            r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, main, t.Path);
+
                         }
                     }
                     else
@@ -118,7 +134,8 @@ namespace _03_Data_03_Obchodnici
 
                 }
 
-                r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, main);
+                r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, main, t.Path);
+
 
             }
 
@@ -159,17 +176,30 @@ namespace _03_Data_03_Obchodnici
                         {
                             l.SaveList(t.List, t);
                         }
-                        else if(list.Y == 0 && list.X == 1) //Načíst list
+                        else if (list.Y == 0 && list.X == 1) //Načíst list
                         {
                             var data = l.LoadList(t.Root, t);
                             t.List = data.Item1;
-                            t.Path = data.Item2 + ".txt";
+                            if (t.Path == "")
+                            {
+                                t.Path = data.Item2;
+
+                            }
+                            else
+                            {
+                                t.Path = data.Item2 + ".txt";
+                            }
                         }
                         else if (list.Y == 0 && list.X == 0) //Vytvořit list
                         {
                             l.CreateList(t);
-                           
+
                         }
+                    }
+                    else if (keyInfo.Key == ConsoleKey.Escape)
+                    {
+                        l.UnsavedListWarning(t.List, t);
+                        Environment.Exit(0);
                     }
                     r.RenderList(t.List, list, t);
 

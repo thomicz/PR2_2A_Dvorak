@@ -5,6 +5,10 @@ namespace _03_Data_03_Obchodnici
     class Salesman
     {
 
+       
+
+       
+
 
         static int NextId = 1;
 
@@ -14,6 +18,19 @@ namespace _03_Data_03_Obchodnici
         public int Sales { get; private set; }
         public List<Salesman> Subordinates { get; private set; }
 
+        public override bool Equals(object obj)
+        {
+            if (obj is Salesman other)
+            {
+                return ID == other.ID; // Porovnáváme podle unikátního ID
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return ID.GetHashCode();
+        }
         public Salesman(string surname, string name, int sales, int id = 0)
         {
             Name = name;
