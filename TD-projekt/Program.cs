@@ -8,13 +8,14 @@ namespace _03_Data_03_Obchodnici
         {
             Console.CursorVisible = false;
 
-            Cursor main = new Cursor(); //Kurzor pro hlavní interface
-            Cursor list = new Cursor(); //Kurzor pro prohlížení seznamu
+            Cursor mainCursor = new Cursor(); //Kurzor pro hlavní interface
+            Cursor listCursor = new Cursor(); //Kurzor pro prohlížení seznamu
+            Cursor warningCursor = new Cursor(); //Kurzor pro ukládací menu
             Tree t = new Tree();
             Render r = new Render();
             List l = new List();
 
-            r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, main, t.Path);
+            r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, mainCursor, t.Path);
 
             while (true)
             {
@@ -22,80 +23,80 @@ namespace _03_Data_03_Obchodnici
 
                 if (keyInfo.Key == ConsoleKey.UpArrow)
                 {
-                    if (main.Y > 0)
+                    if (mainCursor.Y > 0)
                     {
-                        if (t.Stack.Count == 0 && main.Y == 3 && t.Path == "")
+                        if (t.Stack.Count == 0 && mainCursor.Y == 3 && t.Path == "")
                         {
-                            main.Y -= 3;
+                            mainCursor.Y -= 3;
                         }
-                        else if ((t.Stack.Count == 0 && main.Y == 3) || (t.Path == "" && main.Y == 3))
+                        else if ((t.Stack.Count == 0 && mainCursor.Y == 3) || (t.Path == "" && mainCursor.Y == 3))
                         {
-                            main.Y -= 2;
+                            mainCursor.Y -= 2;
                         }
                         else
                         {
-                            main.Y--;
+                            mainCursor.Y--;
                         }
                     }
                 }
                 else if (keyInfo.Key == ConsoleKey.DownArrow)
                 {
-                    if (main.Y < t.Node.Subordinates.Count + 2)
+                    if (mainCursor.Y < t.Node.Subordinates.Count + 2)
                     {
-                        if (t.Stack.Count == 0 && main.Y == 0 && t.Path == "")
+                        if (t.Stack.Count == 0 && mainCursor.Y == 0 && t.Path == "")
                         {
-                            main.Y += 3;
+                            mainCursor.Y += 3;
                         }
-                        else if (t.Stack.Count == 0 && main.Y == 1)
+                        else if (t.Stack.Count == 0 && mainCursor.Y == 1)
                         {
-                            main.Y += 2;
+                            mainCursor.Y += 2;
                         }
                         else
                         {
-                            main.Y++;
+                            mainCursor.Y++;
                         }
                     }
 
                 }
                 else if (keyInfo.Key == ConsoleKey.RightArrow)
                 {
-                    if (main.X == 0)
+                    if (mainCursor.X == 0)
                     {
-                        main.X++;
+                        mainCursor.X++;
                     }
 
                 }
                 else if (keyInfo.Key == ConsoleKey.LeftArrow)
                 {
-                    if (main.X == 1)
+                    if (mainCursor.X == 1)
                     {
-                        main.X--;
+                        mainCursor.X--;
                     }
                 }
                 else if (keyInfo.Key == ConsoleKey.R)
                 {
                     Console.Clear();
-                    r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, main, t.Path);
+                    r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, mainCursor, t.Path);
                 }
                 else if (keyInfo.Key == ConsoleKey.Escape)
                 {
-                    l.UnsavedListWarning(t.List, t);
+                    l.UnsavedListWarning(t.List, t, mainCursor, r);
                     break;
                 }
                 else if (keyInfo.Key == ConsoleKey.Enter)
                 {
 
-                    if (main.Y == 0 && main.X == 0) //Přejít nahoru
+                    if (mainCursor.Y == 0 && mainCursor.X == 0) //Přejít nahoru
                     {
                         t.Node = t.Root;
                         t.Stack.Clear();
                     }
-                    else if (main.Y == 0 && main.X == 1) //Přejít na seznam
+                    else if (mainCursor.Y == 0 && mainCursor.X == 1) //Přejít na seznam
                     {
                         Console.Clear();
-                        List(list, r, t, l);
+                        List(listCursor, warningCursor, r, t, l);
                     }
-                    else if (main.Y == 1 && main.X == 1) //Přidat
+                    else if (mainCursor.Y == 1 && mainCursor.X == 1) //Přidat
                     {
                         if (t.Path != "")
                         {
@@ -109,39 +110,39 @@ namespace _03_Data_03_Obchodnici
                             }
                         }
                     }
-                    else if (main.Y == 2) //Přejít na nadřízeného
+                    else if (mainCursor.Y == 2) //Přejít na nadřízeného
                     {
                         try
                         {
                             t.Node = t.Stack.Pop();
-                            r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, main, t.Path);
+                            r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, mainCursor, t.Path);
 
                         }
                         catch
                         {
-                            r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, main, t.Path);
+                            r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, mainCursor, t.Path);
 
                         }
                     }
                     else
                     {
                         t.Stack.Push(t.Node);
-                        t.Node = t.Node.Subordinates[main.Y - 3];
-                        main.FixCursorPosition(t.Node.Subordinates);
+                        t.Node = t.Node.Subordinates[mainCursor.Y - 3];
+                        mainCursor.FixCursorPosition(t.Node.Subordinates);
                     }
 
                     Console.Clear();
 
                 }
 
-                r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, main, t.Path);
+                r.RenderMainInterface(t.Node, t.Root, t.Stack, t.List, mainCursor, t.Path);
 
 
             }
 
-            static void List(Cursor list, Render r, Tree t, List l)
+            static void List(Cursor listCursor, Cursor warningCursor, Render r, Tree t, List l)
             {
-                r.RenderList(t.List, list, t);
+                r.RenderList(t.List, listCursor, t);
 
                 while (true)
                 {
@@ -149,34 +150,34 @@ namespace _03_Data_03_Obchodnici
 
                     if (keyInfo.Key == ConsoleKey.RightArrow)
                     {
-                        if (list.X < 3)
+                        if (listCursor.X < 3)
                         {
-                            list.X++;
+                            listCursor.X++;
                         }
 
 
                     }
                     else if (keyInfo.Key == ConsoleKey.LeftArrow)
                     {
-                        if (list.X > 0)
+                        if (listCursor.X > 0)
                         {
-                            list.X--;
+                            listCursor.X--;
 
                         }
                     }
                     else if (keyInfo.Key == ConsoleKey.Enter)
                     {
 
-                        if (list.Y == 0 && list.X == 3) //Přejít na prohlížeč
+                        if (listCursor.Y == 0 && listCursor.X == 3) //Přejít na prohlížeč
                         {
                             Console.Clear();
                             break;
                         }
-                        else if (list.Y == 0 && list.X == 2) //Uložit
+                        else if (listCursor.Y == 0 && listCursor.X == 2) //Uložit
                         {
                             l.SaveList(t.List, t);
                         }
-                        else if (list.Y == 0 && list.X == 1) //Načíst list
+                        else if (listCursor.Y == 0 && listCursor.X == 1) //Načíst list
                         {
                             var data = l.LoadList(t.Root, t);
                             t.List = data.Item1;
@@ -190,7 +191,7 @@ namespace _03_Data_03_Obchodnici
                                 t.Path = data.Item2 + ".txt";
                             }
                         }
-                        else if (list.Y == 0 && list.X == 0) //Vytvořit list
+                        else if (listCursor.Y == 0 && listCursor.X == 0) //Vytvořit list
                         {
                             l.CreateList(t);
 
@@ -198,10 +199,10 @@ namespace _03_Data_03_Obchodnici
                     }
                     else if (keyInfo.Key == ConsoleKey.Escape)
                     {
-                        l.UnsavedListWarning(t.List, t);
+                        l.UnsavedListWarning(t.List, t, warningCursor, r);
                         Environment.Exit(0);
                     }
-                    r.RenderList(t.List, list, t);
+                    r.RenderList(t.List, listCursor, t);
 
                 }
 

@@ -4,21 +4,46 @@ namespace TD_projekt
 {
     internal class List
     {
-        public bool UnsavedListWarning(List<Salesman> list, Tree t)
+        public bool UnsavedListWarning(List<Salesman> l, Tree t, Cursor c, Render r)
         {
             Console.Clear();
-            Console.WriteLine($"Chceš uložit svůj seznam? A/N");
-            string input = Console.ReadLine();
+            while (true)
+            {
+                r.RenderWarning(c);
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
-            if (input.ToUpper() == "A")
-            {
-                SaveList(list, t);
-                return true;
+                if (keyInfo.Key == ConsoleKey.RightArrow)
+                {
+                    if (c.X == 0)
+                    {
+                        c.X++;
+                    }
+                }
+                else if (keyInfo.Key == ConsoleKey.LeftArrow)
+                {
+                    if (c.X == 1)
+                    {
+                        c.X--;
+                    }
+                }
+                else if ((keyInfo.Key == ConsoleKey.Enter))
+                {
+                    if (c.X == 0)
+                    {
+                        SaveList(l, t);
+                        return true;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
             }
-            else
-            {
-                return false;
-            }
+            return false;
+
+
+
         }
 
         public bool AddSalesmanToList(Salesman salesman, List<Salesman> list)
@@ -97,15 +122,16 @@ namespace TD_projekt
                     l.Add(s);
                 }
             }
-
+            Console.Clear();
             return Tuple.Create(l, path);
         }
 
         public bool CreateList(Tree t)
         {
 
-            Console.WriteLine($"Zadej název souboru: ");
+            Console.Write($"Zadej název souboru: ");
             string? input = Console.ReadLine();
+            Console.Clear();
 
 
 

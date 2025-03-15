@@ -41,7 +41,7 @@ namespace TD_projekt
             Console.WriteLine("-------------------------------------");
             Console.Write($"Obchodník: {node.Name} {node.Surname}");
 
-            if(path != "")
+            if (path != "")
             {
                 if (cursor.Y == 1)
                 {
@@ -89,7 +89,7 @@ namespace TD_projekt
             {
                 Console.WriteLine();
             }
-           
+
 
             Console.WriteLine("-------------------------------------");
             Console.WriteLine($"Přímé prodeje: {node.Sales}$");
@@ -158,7 +158,7 @@ namespace TD_projekt
 
         public void RenderList(List<Salesman> list, Cursor c, Tree t)
         {
-            Console.SetCursorPosition(0,0);
+            Console.SetCursorPosition(0, 0);
             if (c.X == 0 && c.Y == 0)
             {
                 Console.BackgroundColor = ConsoleColor.Yellow;
@@ -225,7 +225,7 @@ namespace TD_projekt
             Console.WriteLine($"Seznam: {t.Path}");
             Console.WriteLine("-----------------------------------------------------------------");
 
-           
+
             Console.Write("Obsah: ");
 
             if (list.Count == 0)
@@ -236,7 +236,7 @@ namespace TD_projekt
             }
             for (int i = 0; i < list.Count; i++)
             {
-                if(i == 0)
+                if (i == 0)
                 {
                     Console.WriteLine($"{list[i].Name} {list[i].Surname}");
                 }
@@ -250,6 +250,44 @@ namespace TD_projekt
             if (list.Count > 0)
             {
                 Console.WriteLine("-----------------------------------------------------------------");
+            }
+        }
+
+        public void RenderWarning(Cursor c)
+        {
+            Console.SetCursorPosition(0, 0);
+
+            Console.WriteLine("Chcete svůj seznam uložit?");
+            Console.WriteLine("--------------------------");
+
+            if (c.X == 0 && c.Y == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.BackgroundColor = ConsoleColor.Yellow;
+                Console.Write("ANO");
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("ANO");
+                Console.ResetColor();
+            }
+
+            Console.Write("          |          ");
+
+            if (c.X == 1 && c.Y == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.BackgroundColor = ConsoleColor.Yellow;
+                Console.Write("NE");
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("NE");
+                Console.ResetColor();
             }
         }
 
