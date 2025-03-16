@@ -22,7 +22,7 @@ namespace _03_Data_03_Obchodnici
         {
             if (obj is Salesman other)
             {
-                return ID == other.ID; // Porovnáváme podle unikátního ID
+                return ID == other.ID;
             }
             return false;
         }
