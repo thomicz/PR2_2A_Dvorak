@@ -38,11 +38,9 @@ namespace TD_projekt
                         break;
                     }
                 }
-
             }
+
             return false;
-
-
 
         }
 
@@ -57,7 +55,6 @@ namespace TD_projekt
             {
                 return false;
             }
-
         }
 
         public bool RemoveSalesmanFromList(Salesman salesman, List<Salesman> list)
@@ -90,7 +87,6 @@ namespace TD_projekt
                 }
             }
 
-
             return true;
         }
 
@@ -98,12 +94,14 @@ namespace TD_projekt
         public Tuple<List<Salesman>, string> LoadList(Salesman root, Tree t)
         {
             Console.Write("Zadej název souboru: ");
-            string path = Console.ReadLine();
+            string? path = Console.ReadLine();
 
+            
             t.Path = path + ".txt";
 
             if (!File.Exists(t.Path))
             {
+                Console.Clear();
                 return Tuple.Create(new List<Salesman>(), "");
             }
 
@@ -132,9 +130,6 @@ namespace TD_projekt
             Console.Write($"Zadej název souboru: ");
             string? input = Console.ReadLine();
             Console.Clear();
-
-
-
 
             try
             {
@@ -182,11 +177,6 @@ namespace TD_projekt
 
             return null;
         }
-
     }
-
-
-
-
 }
 
