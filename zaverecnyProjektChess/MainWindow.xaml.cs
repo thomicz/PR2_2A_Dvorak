@@ -169,7 +169,7 @@ namespace zaverecnyProjektChess
                 // Přesun figurky
 
 
-                if (b.GameBoard[fx, fy] != null && b.GameBoard[fx, fy].Move(fx, fy, sx, sy))
+                if (b.GameBoard[fx, fy] != null && b.GameBoard[fx, fy].Move(fx, fy, sx, sy, b.GameBoard))
                 {
                     b.GameBoard[sx, sy] = b.GameBoard[fx, fy];
                     b.GameBoard[fx, fy] = null;

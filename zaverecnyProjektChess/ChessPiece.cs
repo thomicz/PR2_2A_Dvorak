@@ -7,6 +7,6 @@
         public abstract Color Color { get; }
         public abstract int X { get; }
         public abstract int Y { get; }
-        public abstract bool Move(int fx, int fy, int sx, int sy);
+        public abstract bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board);
     }
 }

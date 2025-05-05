@@ -18,9 +18,39 @@
         public override int X => _x;
         public override int Y => _y;
 
-        public override bool Move(int fx, int fy, int sx, int sy)
+        public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
-            return true;
+            // Kontrola diagonálního pohybu
+            if (Math.Abs(fx - sx) == Math.Abs(fy - sy) && fx != sx)
+            {
+                ChessPiece destination = board[sx, sy];
+                ChessPiece current = board[fx, fy];
+
+                int dx = (sx - fx) > 0 ? 1 : -1;
+                int dy = (sy - fy) > 0 ? 1 : -1;
+
+                int x = fx + dx;
+                int y = fy + dy;
+
+                while (x != sx && y != sy)
+                {
+                    if (board[x, y] != null)
+                    {
+                        return false;
+                    }
+
+                    x += dx;
+                    y += dy;
+                }
+
+                // Pokud je na cílovém poli figurka stejné barvy, nemůže se tam pohnout
+                if (destination != null && destination.Color == current.Color)
+                    return false;
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

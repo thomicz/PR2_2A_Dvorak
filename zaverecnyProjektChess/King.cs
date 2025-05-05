@@ -19,9 +19,21 @@
         public override int X => _x;
         public override int Y => _y;
 
-        public override bool Move(int fx, int fy, int sx, int sy)
+        public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
-            return true;
+            if (
+               ((fx == sx + 1 && fy == sy + 1) ||
+               (fx == sx + 1 && fy == sy) ||
+               (fx == sx + 1 && fy == sy - 1) ||
+               (fx == sx && fy == sy + 1) ||
+               (fx == sx && fy == sy - 1) ||
+               (fx == sx - 1 && fy == sy + 1) ||
+               (fx == sx - 1 && fy == sy) ||
+               (fx == sx - 1 && fy == sy - 1)
+               ))
+                return true;
+
+            return false;
         }
     }
 }
