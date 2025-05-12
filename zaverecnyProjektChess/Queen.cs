@@ -26,12 +26,10 @@
 
         public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
-            // Královna nesmí brát vlastní figurku
             ChessPiece destinationPiece = board[sx, sy];
             if (destinationPiece != null && destinationPiece.Color == this.Color)
                 return false;
 
-            // Přímý směr – vodorovně
             if (fx == sx && fy != sy)
             {
                 int step = sy > fy ? 1 : -1;
@@ -43,7 +41,6 @@
                 return true;
             }
 
-            // Přímý směr – svisle
             if (fy == sy && fx != sx)
             {
                 int step = sx > fx ? 1 : -1;
@@ -55,7 +52,6 @@
                 return true;
             }
 
-            // Diagonální pohyb
             if (Math.Abs(fx - sx) == Math.Abs(fy - sy) && fx != sx)
             {
                 int stepX = sx > fx ? 1 : -1;
