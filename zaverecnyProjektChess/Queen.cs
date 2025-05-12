@@ -19,18 +19,62 @@
         public override int X => _x;
         public override int Y => _y;
 
+        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board)
+        {
+            throw new NotImplementedException();
+        }
+
         public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
-            if (
-                ((fx == sx && fy != sy) ||
-                (fy == sy && fx != sx) ||
-                (Math.Abs(fx - sx) == Math.Abs(fy - sy)) &&
-                fx != sx)
-               )
+            // Královna nesmí brát vlastní figurku
+            ChessPiece destinationPiece = board[sx, sy];
+            if (destinationPiece != null && destinationPiece.Color == this.Color)
+                return false;
+
+            // Přímý směr – vodorovně
+            if (fx == sx && fy != sy)
+            {
+                int step = sy > fy ? 1 : -1;
+                for (int y = fy + step; y != sy; y += step)
+                {
+                    if (board[fx, y] != null)
+                        return false;
+                }
                 return true;
+            }
+
+            // Přímý směr – svisle
+            if (fy == sy && fx != sx)
+            {
+                int step = sx > fx ? 1 : -1;
+                for (int x = fx + step; x != sx; x += step)
+                {
+                    if (board[x, fy] != null)
+                        return false;
+                }
+                return true;
+            }
+
+            // Diagonální pohyb
+            if (Math.Abs(fx - sx) == Math.Abs(fy - sy) && fx != sx)
+            {
+                int stepX = sx > fx ? 1 : -1;
+                int stepY = sy > fy ? 1 : -1;
+                int x = fx + stepX;
+                int y = fy + stepY;
+
+                while (x != sx && y != sy)
+                {
+                    if (board[x, y] != null)
+                        return false;
+                    x += stepX;
+                    y += stepY;
+                }
+
+                return true;
+            }
 
             return false;
         }
-
     }
 }

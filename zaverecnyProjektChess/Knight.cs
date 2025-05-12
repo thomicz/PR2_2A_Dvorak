@@ -19,8 +19,18 @@
         public override int X => _x;
         public override int Y => _y;
 
+        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board)
+        {
+            throw new NotImplementedException();
+        }
+
         public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
+            // Kontrola, že neútočí na vlastní figurku
+            ChessPiece destinationPiece = board[sx, sy];
+            if (destinationPiece != null && destinationPiece.Color == this.Color)
+                return false;
+
             if (
                (fx == sx + 2 && fy == sy + 1) ||
                (fx == sx + 2 && fy == sy - 1) ||
@@ -30,11 +40,10 @@
                (fx == sx + 1 && fy == sy - 2) ||
                (fx == sx - 1 && fy == sy + 2) ||
                (fx == sx - 1 && fy == sy - 2)
-               )
-               return true;
+            )
+                return true;
 
             return false;
-
         }
     }
 }

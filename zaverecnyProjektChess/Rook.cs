@@ -19,15 +19,46 @@
         public override int X => _x;
         public override int Y => _y;
 
+        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board)
+        {
+            throw new NotImplementedException();
+        }
+
         public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
-            if (
-                (fx == sx && fy != sy) ||
-                (fy == sy && fx != sx)
-               )
-                return true;
+            // Pohyb pouze ve vodorovném nebo svislém směru
+            if (!((fx == sx && fy != sy) || (fy == sy && fx != sx)))
+                return false;
 
-            return false;
+            ChessPiece destinationPiece = board[sx, sy];
+
+            // Nesmí brát vlastní figurku
+            if (destinationPiece != null && destinationPiece.Color == this.Color)
+                return false;
+
+            // Kontrola cesty - vodorovný pohyb
+            if (fx == sx)
+            {
+                int step = sy > fy ? 1 : -1;
+                for (int y = fy + step; y != sy; y += step)
+                {
+                    if (board[fx, y] != null)
+                        return false;
+                }
+            }
+            // Kontrola cesty - svislý pohyb
+            else if (fy == sy)
+            {
+                int step = sx > fx ? 1 : -1;
+                for (int x = fx + step; x != sx; x += step)
+                {
+                    if (board[x, fy] != null)
+                        return false;
+                }
+            }
+
+            return true;
         }
+
     }
 }

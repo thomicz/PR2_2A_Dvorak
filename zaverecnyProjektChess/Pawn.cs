@@ -22,8 +22,16 @@
 
         public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
+
             if (Color == Color.White)
             {
+                //Tohle zkontroluje, zda lze chytit figurku
+                if ((fx == sx - 1 && (fy == sy - 1 || fy == sy + 1)) && board[sx, sy] != null && board[sx, sy].Color != Color.White)
+                {
+                    return true;
+                }
+
+
                 if (WasAlreadyMoved == false)
                 {
                     if (fy == sy && (fx == sx - 1 || fx == sx - 2))
@@ -38,7 +46,6 @@
                 }
                 else
                 {
-
                     if (fy == sy && fx == sx - 1)
                     {
                         WasAlreadyMoved = true;
@@ -48,11 +55,16 @@
                     {
                         return false;
                     }
-
                 }
             }
             else
             {
+                //Tohle zkontroluje, zda lze chytit figurku
+                if ((fx == sx + 1 && (fy == sy - 1 || fy == sy + 1)) && board[sx, sy] != null && board[sx, sy].Color != Color.Black)
+                {
+                    return true;
+                }
+
                 if (WasAlreadyMoved == false)
                 {
                     if (fy == sy && (fx == sx + 1 || fx == sx + 2))
@@ -67,7 +79,6 @@
                 }
                 else
                 {
-
                     if (fy == sy && fx == sx + 1)
                     {
                         WasAlreadyMoved = true;
@@ -77,11 +88,13 @@
                     {
                         return false;
                     }
-
                 }
             }
+        }
 
-
+        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board)
+        {
+            throw new NotImplementedException();
         }
     }
 }

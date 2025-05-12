@@ -18,6 +18,11 @@
         public override int X => _x;
         public override int Y => _y;
 
+        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board)
+        {
+            throw new NotImplementedException();
+        }
+
         public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
             if (Math.Abs(fx - sx) == Math.Abs(fy - sy) && fx != sx)
