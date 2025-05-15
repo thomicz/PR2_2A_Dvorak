@@ -18,12 +18,22 @@
         public override int X => _x;
         public override int Y => _y;
 
-        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board)
+        public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
-            throw new NotImplementedException();
+            if (IsMoveLegal(fx, fy, sx, sy, board))
+            {
+                board[sx, sy] = board[fx, fy];
+                board[fx, fy] = null;
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
+        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
             if (Math.Abs(fx - sx) == Math.Abs(fy - sy) && fx != sx)
             {

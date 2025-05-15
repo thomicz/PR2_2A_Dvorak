@@ -9,8 +9,6 @@
             GameBoard = new ChessPiece[8, 8];
         }
 
-
-
         public void SetupBoard()
         {
             SetupWhite();
@@ -45,10 +43,20 @@
             GameBoard[7, 6] = new Knight(Color.Black, 7, 6);
             GameBoard[7, 7] = new Rook(Color.Black, 7, 7);
 
-            for(int i = 0; i < 8; i++)
+            for (int i = 0; i < 8; i++)
             {
                 GameBoard[6, i] = new Pawn(Color.Black, 6, i);
             }
         }
+
+        public void LongCastling()
+        {
+            throw new NotImplementedException();
+        }
+        public void ShortCastling()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

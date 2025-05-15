@@ -22,7 +22,21 @@
 
         public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
+            if (IsMoveLegal(fx, fy, sx, sy, board))
+            {
+                board[sx, sy] = board[fx, fy];
+                board[fx, fy] = null;
 
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board)
+        {
             if (Color == Color.White)
             {
                 //Tohle zkontroluje, zda lze chytit figurku
@@ -34,7 +48,7 @@
 
                 if (WasAlreadyMoved == false)
                 {
-                    if (fy == sy && (fx == sx - 1 || fx == sx - 2))
+                    if (fy == sy && (fx == sx - 1 || fx == sx - 2) && board[sx, sy] == null)
                     {
                         WasAlreadyMoved = true;
                         return true;
@@ -46,7 +60,7 @@
                 }
                 else
                 {
-                    if (fy == sy && fx == sx - 1)
+                    if (fy == sy && fx == sx - 1 && board[sx, sy] == null)
                     {
                         WasAlreadyMoved = true;
                         return true;
@@ -67,7 +81,7 @@
 
                 if (WasAlreadyMoved == false)
                 {
-                    if (fy == sy && (fx == sx + 1 || fx == sx + 2))
+                    if (fy == sy && (fx == sx + 1 || fx == sx + 2) && board[sx, sy] == null)
                     {
                         WasAlreadyMoved = true;
                         return true;
@@ -79,7 +93,7 @@
                 }
                 else
                 {
-                    if (fy == sy && fx == sx + 1)
+                    if (fy == sy && fx == sx + 1 && board[sx, sy] == null)
                     {
                         WasAlreadyMoved = true;
                         return true;
@@ -90,11 +104,6 @@
                     }
                 }
             }
-        }
-
-        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board)
-        {
-            throw new NotImplementedException();
         }
     }
 }

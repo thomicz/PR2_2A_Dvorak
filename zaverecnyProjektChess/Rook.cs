@@ -19,28 +19,43 @@
         public override int X => _x;
         public override int Y => _y;
 
-        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board)
-        {
-            throw new NotImplementedException();
-        }
-
         public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
+            if (IsMoveLegal(fx, fy, sx, sy, board))
+            {
+                board[sx, sy] = board[fx, fy];
+                board[fx, fy] = null;
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board)
+        {
             if (!((fx == sx && fy != sy) || (fy == sy && fx != sx)))
+            {
                 return false;
+            }
 
-            ChessPiece destinationPiece = board[sx, sy];
-
-            if (destinationPiece != null && destinationPiece.Color == this.Color)
+            if (board[sx, sy] != null && board[sx, sy].Color == this.Color)
+            {
                 return false;
+            }
 
             if (fx == sx)
             {
                 int step = sy > fy ? 1 : -1;
+
                 for (int y = fy + step; y != sy; y += step)
                 {
                     if (board[fx, y] != null)
+                    {
                         return false;
+                    }
                 }
             }
             else if (fy == sy)
@@ -49,12 +64,14 @@
                 for (int x = fx + step; x != sx; x += step)
                 {
                     if (board[x, fy] != null)
+                    {
                         return false;
+                    }
                 }
             }
 
             return true;
-        }
 
+        }
     }
 }

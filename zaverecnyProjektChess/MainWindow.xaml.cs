@@ -18,7 +18,7 @@ namespace zaverecnyProjektChess
         public MainWindow()
         {
 
-            b = new Board(); 
+            b = new Board();
 
 
             InitializeComponent();
@@ -169,14 +169,16 @@ namespace zaverecnyProjektChess
                 // Přesun figurky
 
 
-                if (b.GameBoard[fx, fy] != null && b.GameBoard[fx, fy].Move(fx, fy, sx, sy, b.GameBoard))
-                {
-                    b.GameBoard[sx, sy] = b.GameBoard[fx, fy];
-                    b.GameBoard[fx, fy] = null;
+                //if (b.GameBoard[fx, fy] != null && b.GameBoard[fx, fy].Move(fx, fy, sx, sy, b.GameBoard))
+                //{
+                //    b.GameBoard[sx, sy] = b.GameBoard[fx, fy];
+                //    b.GameBoard[fx, fy] = null;
 
-                    firstClick = null;
-                    secondClick = null;
-                }
+                //    firstClick = null;
+                //    secondClick = null;
+                //}
+
+                b.GameBoard[fx, fy].Move(fx, fy, sx, sy, b.GameBoard);
 
 
                 // Reset výběru a překreslení
@@ -248,8 +250,5 @@ namespace zaverecnyProjektChess
                 }
             }
         }
-
-
-
     }
 }
