@@ -153,12 +153,10 @@ namespace zaverecnyProjektChess
 
             if (firstClick == null)
             {
-                // První kliknutí – výběr figurky
                 firstClick = clickedPosition;
             }
             else
             {
-                // Druhé kliknutí – cílové pole
                 secondClick = clickedPosition;
 
                 int fx = (int)firstClick.Value.X;
@@ -166,25 +164,17 @@ namespace zaverecnyProjektChess
                 int sx = (int)secondClick.Value.X;
                 int sy = (int)secondClick.Value.Y;
 
-                // Přesun figurky
+                //Přesun figurky
+                if (b.GameBoard[fx, fy] != null)
+                {
+                    b.GameBoard[fx, fy].Move(fx, fy, sx, sy, b.GameBoard);
+                }
 
-
-                //if (b.GameBoard[fx, fy] != null && b.GameBoard[fx, fy].Move(fx, fy, sx, sy, b.GameBoard))
-                //{
-                //    b.GameBoard[sx, sy] = b.GameBoard[fx, fy];
-                //    b.GameBoard[fx, fy] = null;
-
-                //    firstClick = null;
-                //    secondClick = null;
-                //}
-
-                b.GameBoard[fx, fy].Move(fx, fy, sx, sy, b.GameBoard);
-
-
-                // Reset výběru a překreslení
+                //Reset výběru a překreslení
                 firstClick = null;
                 secondClick = null;
 
+                //Aktualizace UI
                 UpdateBoard();
             }
         }

@@ -49,6 +49,84 @@
             }
         }
 
+        public bool IsWhiteKingInCheck(int fx, int fy, int sx, int sy, ChessPiece[,] board)
+        {
+            board[sx, sy] = board[fx, fy];
+            board[fx, fy] = null;
+
+            int kingX = 0;
+            int kingY = 0;
+
+            for (int i = 0; i < board.GetLength(0) - 1; i++)
+            {
+                for (int j = 0; j < board.GetLength(1) - 1; j++)
+                {
+                    if ((board[i, j] != null && board[i, j].Name == ChessPieceName.King && board[i, j].Color == Color.White))
+                    {
+                        kingX = i;
+                        kingY = j;
+
+                        break;
+                    }
+                }
+
+            }
+
+            for (int i = 0; i < board.GetLength(0) - 1; i++)
+            {
+                for (int j = 0; j < board.GetLength(1) - 1; j++)
+                {
+                    if (board[i, j].Move(i, j, kingX, kingY, board))
+                    {
+                        return true;
+                    }
+
+                }
+
+            }
+
+            return false;
+        }
+
+        public bool IsBlackKingInCheck(int fx, int fy, int sx, int sy, ChessPiece[,] board)
+        {
+            board[sx, sy] = board[fx, fy];
+            board[fx, fy] = null;
+
+            int kingX = 0;
+            int kingY = 0;
+
+            for (int i = 0; i < board.GetLength(0) - 1; i++)
+            {
+                for (int j = 0; j < board.GetLength(1) - 1; j++)
+                {
+                    if (board[i, j] != null && board[i, j].Name == ChessPieceName.King && board[i, j].Color == Color.Black)
+                    {
+                        kingX = i;
+                        kingY = j;
+
+                        break;
+                    }
+                }
+
+            }
+
+            for (int i = 0; i < board.GetLength(0) - 1; i++)
+            {
+                for (int j = 0; j < board.GetLength(1) - 1; j++)
+                {
+                    if (board[i, j] != null && board[i, j].Move(i, j, kingX, kingY, board))
+                    {
+                        return true;
+                    }
+
+                }
+
+            }
+
+            return false;
+        }
+
         public void LongCastling()
         {
             throw new NotImplementedException();
