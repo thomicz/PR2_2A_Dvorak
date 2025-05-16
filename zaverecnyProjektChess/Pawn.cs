@@ -40,7 +40,7 @@
 
         public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board, bool ignoreCheck)
         {
-            if (ignoreCheck)
+            if (!ignoreCheck)
             {
                 Board b = new Board();
 

@@ -36,6 +36,26 @@
 
         public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board, bool ignoreCheck)
         {
+            if (!ignoreCheck)
+            {
+                Board b = new Board();
+
+                if (board[fx, fy] != null && board[fx, fy].Color == Color.White)
+                {
+                    if (b.IsWhiteKingInCheck(fx, fy, sx, sy, board))
+                    {
+                        return false;
+                    }
+                }
+                else if (board[fx, fy] != null && board[fx, fy].Color == Color.Black)
+                {
+                    if (b.IsBlackKingInCheck(fx, fy, sx, sy, board))
+                    {
+                        return false;
+                    }
+                }
+            }
+
             if (!((fx == sx && fy != sy) || (fy == sy && fx != sx)))
             {
                 return false;

@@ -88,8 +88,8 @@
                 {
                     if (boardCopy[i, j] != null && boardCopy[i, j].Name == ChessPieceName.King && boardCopy[i, j].Color == Color.White)
                     {
-                        kingX = j;
-                        kingY = i;
+                        kingX = i;
+                        kingY = j;
 
                         break;
                     }
@@ -101,9 +101,11 @@
             {
                 for (int j = 0; j < boardCopy.GetLength(1); j++)
                 {
-                    if (boardCopy[i, j].IsMoveLegal(i, j, kingX, kingY, boardCopy, true))
+
+                    if (boardCopy[i, j] != null)
                     {
-                        return true;
+                        if (boardCopy[i, j].IsMoveLegal(i, j, kingX, kingY, boardCopy, true))
+                            return true;
                     }
 
                 }
@@ -145,11 +147,8 @@
                 {
                     if (boardCopy[i, j] != null)
                     {
-                       
                             if (boardCopy[i, j].IsMoveLegal(i, j, kingX, kingY, boardCopy, true))
                                 return true;
-                        
-                        
                     }
                 }
 
