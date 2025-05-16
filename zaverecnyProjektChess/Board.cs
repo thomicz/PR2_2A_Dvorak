@@ -49,22 +49,47 @@
             }
         }
 
+        public ChessPiece[,] Copy2DArray(ChessPiece[,] original)
+        {
+            int rows = original.GetLength(0);
+            int cols = original.GetLength(1);
+            ChessPiece[,] copy = new ChessPiece[rows, cols];
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    if (original[i, j] != null)
+                    {
+                        var cloned = original[i, j].Clone();
+                        copy[i, j] = cloned;
+                    }
+                }
+            }
+
+            return copy;
+        }
+
+
         public bool IsWhiteKingInCheck(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
-            board[sx, sy] = board[fx, fy];
-            board[fx, fy] = null;
+            ChessPiece[,] boardCopy = Copy2DArray(board);
+
+            boardCopy[sx, sy] = boardCopy[fx, fy];
+            boardCopy[fx, fy] = null;
 
             int kingX = 0;
             int kingY = 0;
 
-            for (int i = 0; i < board.GetLength(0) - 1; i++)
+            //Najdu krále bílé barvy
+            for (int i = 0; i < boardCopy.GetLength(0); i++)
             {
-                for (int j = 0; j < board.GetLength(1) - 1; j++)
+                for (int j = 0; j < boardCopy.GetLength(1); j++)
                 {
-                    if ((board[i, j] != null && board[i, j].Name == ChessPieceName.King && board[i, j].Color == Color.White))
+                    if (boardCopy[i, j] != null && boardCopy[i, j].Name == ChessPieceName.King && boardCopy[i, j].Color == Color.White)
                     {
-                        kingX = i;
-                        kingY = j;
+                        kingX = j;
+                        kingY = i;
 
                         break;
                     }
@@ -72,35 +97,38 @@
 
             }
 
-            for (int i = 0; i < board.GetLength(0) - 1; i++)
+            for (int i = 0; i < boardCopy.GetLength(0); i++)
             {
-                for (int j = 0; j < board.GetLength(1) - 1; j++)
+                for (int j = 0; j < boardCopy.GetLength(1); j++)
                 {
-                    if (board[i, j].Move(i, j, kingX, kingY, board))
+                    if (boardCopy[i, j].IsMoveLegal(i, j, kingX, kingY, boardCopy, true))
                     {
                         return true;
                     }
 
                 }
-
             }
 
             return false;
+
         }
 
         public bool IsBlackKingInCheck(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
-            board[sx, sy] = board[fx, fy];
-            board[fx, fy] = null;
+            ChessPiece[,] boardCopy = Copy2DArray(board);
+
+            boardCopy[sx, sy] = boardCopy[fx, fy];
+            boardCopy[fx, fy] = null;
 
             int kingX = 0;
             int kingY = 0;
 
-            for (int i = 0; i < board.GetLength(0) - 1; i++)
+            //Najdu krále černé barvy
+            for (int i = 0; i < boardCopy.GetLength(0) - 1; i++)
             {
-                for (int j = 0; j < board.GetLength(1) - 1; j++)
+                for (int j = 0; j < boardCopy.GetLength(1) - 1; j++)
                 {
-                    if (board[i, j] != null && board[i, j].Name == ChessPieceName.King && board[i, j].Color == Color.Black)
+                    if (boardCopy[i, j] != null && boardCopy[i, j].Name == ChessPieceName.King && boardCopy[i, j].Color == Color.Black)
                     {
                         kingX = i;
                         kingY = j;
@@ -111,15 +139,18 @@
 
             }
 
-            for (int i = 0; i < board.GetLength(0) - 1; i++)
+            for (int i = 0; i < boardCopy.GetLength(0) - 1; i++)
             {
-                for (int j = 0; j < board.GetLength(1) - 1; j++)
+                for (int j = 0; j < boardCopy.GetLength(1) - 1; j++)
                 {
-                    if (board[i, j] != null && board[i, j].Move(i, j, kingX, kingY, board))
+                    if (boardCopy[i, j] != null)
                     {
-                        return true;
+                       
+                            if (boardCopy[i, j].IsMoveLegal(i, j, kingX, kingY, boardCopy, true))
+                                return true;
+                        
+                        
                     }
-
                 }
 
             }

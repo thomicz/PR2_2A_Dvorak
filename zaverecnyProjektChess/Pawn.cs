@@ -22,21 +22,45 @@
 
         public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
-            if (IsMoveLegal(fx, fy, sx, sy, board))
-            {
-                board[sx, sy] = board[fx, fy];
-                board[fx, fy] = null;
 
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            board[sx, sy] = board[fx, fy];
+            board[fx, fy] = null;
+
+            return true;
+
         }
 
-        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board)
+        public override ChessPiece Clone()
         {
+            Pawn cloned = new Pawn(this.Color, this.X, this.Y);
+            cloned.WasAlreadyMoved = this.WasAlreadyMoved;
+            return cloned;
+        }
+
+
+        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board, bool ignoreCheck)
+        {
+            if (ignoreCheck)
+            {
+                Board b = new Board();
+
+                if (board[fx, fy] != null && board[fx, fy].Color == Color.White)
+                {
+                    if (b.IsWhiteKingInCheck(fx, fy, sx, sy, board))
+                    {
+                        return false;
+                    }
+                }
+                else if (board[fx, fy] != null && board[fx, fy].Color == Color.Black)
+                {
+                    if (b.IsBlackKingInCheck(fx, fy, sx, sy, board))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+
             if (Color == Color.White)
             {
                 //Tohle zkontroluje, zda lze chytit figurku

@@ -21,20 +21,20 @@
 
         public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
-            if (IsMoveLegal(fx, fy, sx, sy, board))
-            {
-                board[sx, sy] = board[fx, fy];
-                board[fx, fy] = null;
 
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            board[sx, sy] = board[fx, fy];
+            board[fx, fy] = null;
+
+            return true;
+
+        }
+        public override ChessPiece Clone()
+        {
+            Rook cloned = new Rook(this.Color, this.X, this.Y);
+            return cloned;
         }
 
-        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board)
+        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board, bool ignoreCheck)
         {
             if (!((fx == sx && fy != sy) || (fy == sy && fx != sx)))
             {
