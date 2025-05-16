@@ -68,6 +68,7 @@
             }
 
             return copy;
+
         }
 
 
@@ -94,20 +95,19 @@
                         break;
                     }
                 }
-
             }
 
             for (int i = 0; i < boardCopy.GetLength(0); i++)
             {
                 for (int j = 0; j < boardCopy.GetLength(1); j++)
                 {
-
                     if (boardCopy[i, j] != null)
                     {
                         if (boardCopy[i, j].IsMoveLegal(i, j, kingX, kingY, boardCopy, true))
+                        {
                             return true;
+                        }
                     }
-
                 }
             }
 
@@ -126,9 +126,9 @@
             int kingY = 0;
 
             //Najdu krále černé barvy
-            for (int i = 0; i < boardCopy.GetLength(0) - 1; i++)
+            for (int i = 0; i < boardCopy.GetLength(0); i++)
             {
-                for (int j = 0; j < boardCopy.GetLength(1) - 1; j++)
+                for (int j = 0; j < boardCopy.GetLength(1); j++)
                 {
                     if (boardCopy[i, j] != null && boardCopy[i, j].Name == ChessPieceName.King && boardCopy[i, j].Color == Color.Black)
                     {
@@ -138,7 +138,6 @@
                         break;
                     }
                 }
-
             }
 
             for (int i = 0; i < boardCopy.GetLength(0) - 1; i++)
@@ -147,11 +146,10 @@
                 {
                     if (boardCopy[i, j] != null)
                     {
-                            if (boardCopy[i, j].IsMoveLegal(i, j, kingX, kingY, boardCopy, true))
-                                return true;
+                        if (boardCopy[i, j].IsMoveLegal(i, j, kingX, kingY, boardCopy, true))
+                            return true;
                     }
                 }
-
             }
 
             return false;
@@ -165,6 +163,5 @@
         {
             throw new NotImplementedException();
         }
-
     }
 }
