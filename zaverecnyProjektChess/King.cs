@@ -18,16 +18,15 @@
         public override Color Color => _color;
         public override int X => _x;
         public override int Y => _y;
+        public bool WasAlreadyMoved = false;
+
 
         public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
-
             board[sx, sy] = board[fx, fy];
             board[fx, fy] = null;
 
             return true;
-
-
         }
 
         public override ChessPiece Clone()
@@ -58,9 +57,10 @@
                 }
             }
 
-            ChessPiece destinationPiece = board[sx, sy];
-            if (destinationPiece != null && destinationPiece.Color == this.Color)
+            if (board[sx, sy] != null && board[sx, sy].Color == this.Color)
+            {
                 return false;
+            }
 
             if (
                 (fx == sx + 1 && fy == sy + 1) ||

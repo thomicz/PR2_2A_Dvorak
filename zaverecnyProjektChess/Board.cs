@@ -140,19 +140,22 @@
                 }
             }
 
-            for (int i = 0; i < boardCopy.GetLength(0) - 1; i++)
+            for (int i = 0; i < boardCopy.GetLength(0); i++)
             {
-                for (int j = 0; j < boardCopy.GetLength(1) - 1; j++)
+                for (int j = 0; j < boardCopy.GetLength(1); j++)
                 {
                     if (boardCopy[i, j] != null)
                     {
                         if (boardCopy[i, j].IsMoveLegal(i, j, kingX, kingY, boardCopy, true))
+                        {
                             return true;
+                        }
                     }
                 }
             }
 
             return false;
+
         }
 
         public void LongCastling()
