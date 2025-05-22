@@ -3,24 +3,17 @@
     internal class Bishop : ChessPiece
     {
         private Color _color;
-        private int _x;
-        private int _y;
 
-        public Bishop(Color color, int x, int y)
+        public Bishop(Color color)
         {
             _color = color;
-            _x = x;
-            _y = y;
         }
         public override int Value { get => 3; set => throw new NotImplementedException(); }
         public override ChessPieceName Name { get => ChessPieceName.Bishop; set => throw new NotImplementedException(); }
         public override Color Color => _color;
-        public override int X => _x;
-        public override int Y => _y;
 
         public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
-
             board[sx, sy] = board[fx, fy];
             board[fx, fy] = null;
 
@@ -29,12 +22,17 @@
         }
         public override ChessPiece Clone()
         {
-            Bishop cloned = new Bishop(this.Color, this.X, this.Y);
+            Bishop cloned = new Bishop(this.Color);
             return cloned;
         }
 
-        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board, bool ignoreCheck)
+        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board, Color ToMove, bool ignoreCheck)
         {
+            if ((ToMove == Color.White && this.Color == Color.Black) || (ToMove == Color.Black && this.Color == Color.White))
+            {
+                return false;
+            }
+
             if (!ignoreCheck)
             {
                 Board b = new Board();

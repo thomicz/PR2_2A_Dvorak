@@ -17,9 +17,7 @@ namespace zaverecnyProjektChess
 
         public MainWindow()
         {
-
             b = new Board();
-
 
             InitializeComponent();
 
@@ -165,9 +163,18 @@ namespace zaverecnyProjektChess
                 int sy = (int)secondClick.Value.Y;
 
                 //Přesun figurky
-                if (b.GameBoard[fx, fy] != null && b.GameBoard[fx, fy].IsMoveLegal(fx, fy, sx, sy, b.GameBoard))
+                if (b.GameBoard[fx, fy] != null && b.GameBoard[fx, fy].IsMoveLegal(fx, fy, sx, sy, b.GameBoard, b.ToMove))
                 {
                     b.GameBoard[fx, fy].Move(fx, fy, sx, sy, b.GameBoard);
+
+                    if (b.ToMove == Color.White)
+                    {
+                        b.ToMove = Color.Black;
+                    }
+                    else
+                    {
+                        b.ToMove = Color.White;
+                    }
                 }
 
                 //Reset výběru a překreslení

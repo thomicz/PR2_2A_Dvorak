@@ -3,21 +3,15 @@
     internal class Knight : ChessPiece
     {
         private Color _color;
-        private int _x;
-        private int _y;
 
-        public Knight(Color color, int x, int y)
+        public Knight(Color color)
         {
             _color = color;
-            _x = x;
-            _y = y;
         }
 
         public override int Value { get => 3; set => throw new NotImplementedException(); }
         public override ChessPieceName Name { get => ChessPieceName.Knight; set => throw new NotImplementedException(); }
         public override Color Color => _color;
-        public override int X => _x;
-        public override int Y => _y;
 
         public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
@@ -30,11 +24,16 @@
         }
         public override ChessPiece Clone()
         {
-            Knight cloned = new Knight(this.Color, this.X, this.Y);
+            Knight cloned = new Knight(this.Color);
             return cloned;
         }
-        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board, bool ignoreCheck)
+        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board, Color ToMove, bool ignoreCheck)
         {
+            if ((ToMove == Color.White && this.Color == Color.Black) || (ToMove == Color.Black && this.Color == Color.White))
+            {
+                return false;
+            }
+
             if (!ignoreCheck)
             {
                 Board b = new Board();
@@ -82,4 +81,3 @@
         }
     }
 }
-

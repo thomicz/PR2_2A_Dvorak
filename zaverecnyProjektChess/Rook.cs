@@ -3,21 +3,15 @@
     internal class Rook : ChessPiece
     {
         private Color _color;
-        private int _x;
-        private int _y;
 
-        public Rook(Color color, int x, int y)
+        public Rook(Color color)
         {
             _color = color;
-            _x = x;
-            _y = y;
         }
 
         public override int Value { get => 5; set => throw new NotImplementedException(); }
         public override ChessPieceName Name { get => ChessPieceName.Rook; set => throw new NotImplementedException(); }
         public override Color Color => _color;
-        public override int X => _x;
-        public override int Y => _y;
         public bool WasAlreadyMoved = false;
 
 
@@ -32,12 +26,17 @@
         }
         public override ChessPiece Clone()
         {
-            Rook cloned = new Rook(this.Color, this.X, this.Y);
+            Rook cloned = new Rook(this.Color);
             return cloned;
         }
 
-        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board, bool ignoreCheck)
+        public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board, Color ToMove, bool ignoreCheck)
         {
+            if ((ToMove == Color.White && this.Color == Color.Black) || (ToMove == Color.Black && this.Color == Color.White))
+            {
+                return false;
+            }
+
             if (!ignoreCheck)
             {
                 Board b = new Board();
