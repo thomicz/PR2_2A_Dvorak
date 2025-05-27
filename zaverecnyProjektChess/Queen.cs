@@ -9,8 +9,7 @@
             _color = color;
         }
 
-        public override int Value { get => 9; set => throw new NotImplementedException(); }
-        public override ChessPieceName Name { get => ChessPieceName.Queen; set => throw new NotImplementedException(); }
+        public override ChessPieceName Name { get => ChessPieceName.Queen; }
         public override Color Color => _color;
 
         public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)

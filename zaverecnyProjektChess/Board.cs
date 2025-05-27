@@ -159,13 +159,105 @@
 
         }
 
-        public void LongCastling()
+        public void LongCastling(Color c)
         {
             throw new NotImplementedException();
         }
-        public void ShortCastling()
+        public void ShortCastling(Color c)
         {
             throw new NotImplementedException();
         }
+
+        public Color? FindCheckmate(Color color)
+        {
+            ChessPiece[,] boardCopy = Copy2DArray(GameBoard);
+
+            int kingX = 0;
+            int kingY = 0;
+
+            for (int i = 0; i < boardCopy.GetLength(0); i++)
+            {
+                for (int j = 0; j < boardCopy.GetLength(1); j++)
+                {
+                    if (boardCopy[i, j] != null && boardCopy[i, j].Name == ChessPieceName.King && boardCopy[i, j].Color == color)
+                    {
+                        kingX = i;
+                        kingY = j;
+
+                        break;
+                    }
+                }
+            }
+
+            bool inCheck = IsKingInCheck(color, boardCopy);
+
+            if (!inCheck)
+            {
+                return null;
+            }
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (boardCopy[i, j] != null && boardCopy[i, j].Color == color)
+                    {
+                        for (int k = 0; k < 8; k++)
+                        {
+                            for (int l = 0; l < 8; l++)
+                            {
+                                if (boardCopy[i, j].IsMoveLegal(i, j, k, l, boardCopy, color, true))
+                                {
+                                    ChessPiece[,] tmpBoard = Copy2DArray(boardCopy);
+                                    tmpBoard[k, l] = tmpBoard[i, j];
+                                    tmpBoard[i, j] = null;
+
+                                    if (!IsKingInCheck(color, tmpBoard))
+                                    {
+                                        return null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return color;
+        }
+        private bool IsKingInCheck(Color color, ChessPiece[,] board)
+        {
+            int kingX = -1, kingY = -1;
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (board[i, j] != null && board[i, j].Name == ChessPieceName.King && board[i, j].Color == color)
+                    {
+                        kingX = i;
+                        kingY = j;
+                        break;
+                    }
+                }
+            }
+            if (kingX == -1 || kingY == -1)
+                return false;
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (board[i, j] != null && board[i, j].Color != color)
+                    {
+                        if (board[i, j].IsMoveLegal(i, j, kingX, kingY, board, board[i, j].Color, true))
+
+
+                            return true;
+                    }
+                }
+            }
+            return false;
+        }
+
     }
 }

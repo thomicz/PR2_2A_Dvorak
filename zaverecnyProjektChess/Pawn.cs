@@ -9,19 +9,16 @@
             _color = color;
         }
 
-        public override int Value { get => 1; set => throw new NotImplementedException(); }
-        public override ChessPieceName Name { get => ChessPieceName.Pawn; set => throw new NotImplementedException(); }
+        public override ChessPieceName Name { get => ChessPieceName.Pawn; }
         public override Color Color => _color;
         public bool WasAlreadyMoved = false;
 
         public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
-
             board[sx, sy] = board[fx, fy];
             board[fx, fy] = null;
 
             return true;
-
         }
 
         public override ChessPiece Clone()
@@ -31,6 +28,13 @@
             return cloned;
         }
 
+        public void TryPromote(int x, int y, ChessPiece[,] board)
+        {
+            if ((Color == Color.White && x == 7) || (Color == Color.Black && x == 0))
+            {
+                board[x, y] = new Queen(this.Color);
+            }
+        }
 
         public override bool IsMoveLegal(int fx, int fy, int sx, int sy, ChessPiece[,] board, Color ToMove, bool ignoreCheck)
         {
@@ -58,7 +62,6 @@
                     }
                 }
             }
-
 
             if (Color == Color.White)
             {

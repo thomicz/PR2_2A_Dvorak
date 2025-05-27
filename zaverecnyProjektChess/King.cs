@@ -9,8 +9,7 @@
             _color = color;
         }
 
-        public override int Value { get => 0; set => throw new NotImplementedException(); }
-        public override ChessPieceName Name { get => ChessPieceName.King; set => throw new NotImplementedException(); }
+        public override ChessPieceName Name { get => ChessPieceName.King; }
         public override Color Color => _color;
         public bool WasAlreadyMoved = false;
 

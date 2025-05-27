@@ -17,9 +17,11 @@ namespace zaverecnyProjektChess
 
         public MainWindow()
         {
+
             b = new Board();
 
             InitializeComponent();
+
 
             for (int i = 0; i < 8; i++)
             {
@@ -167,6 +169,11 @@ namespace zaverecnyProjektChess
                 {
                     b.GameBoard[fx, fy].Move(fx, fy, sx, sy, b.GameBoard);
 
+                    if (b.GameBoard[sx, sy] is Pawn pawn)
+                    {
+                        pawn.TryPromote(sx, sy, b.GameBoard);
+                    }
+
                     if (b.ToMove == Color.White)
                     {
                         b.ToMove = Color.Black;
@@ -177,15 +184,22 @@ namespace zaverecnyProjektChess
                     }
                 }
 
-                //Reset výběru a překreslení
                 firstClick = null;
                 secondClick = null;
-
+               
                 //Aktualizace UI
                 UpdateBoard();
+
+                if (b.FindCheckmate(Color.White) == Color.White)
+                {
+                    MessageBox.Show("Bílý král je v šach matu! Černý vyhrává!");
+                }
+                if (b.FindCheckmate(Color.Black) == Color.Black)
+                {
+                    MessageBox.Show("Černý král je v šach matu! Bílý vyhrává!");
+                }
             }
         }
-
 
         private void UpdateBoard()
         {
