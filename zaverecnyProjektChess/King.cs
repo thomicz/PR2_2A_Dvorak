@@ -18,6 +18,7 @@
         {
             board[sx, sy] = board[fx, fy];
             board[fx, fy] = null;
+            WasAlreadyMoved = true; 
 
             return true;
         }

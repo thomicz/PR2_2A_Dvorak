@@ -161,11 +161,98 @@
 
         public void LongCastling(Color c)
         {
-            throw new NotImplementedException();
+            if (c == Color.White)
+            {
+                if (GameBoard[0, 7] != null &&
+                   GameBoard[0, 7].Name == ChessPieceName.Rook &&
+                   !GameBoard[0, 7].WasAlreadyMoved &&
+                   GameBoard[0, 3] != null &&
+                   GameBoard[0, 3].Name == ChessPieceName.King &&
+                   !GameBoard[0, 3].WasAlreadyMoved &&
+                   GameBoard[0, 4] == null &&
+                   GameBoard[0, 5] == null &&
+                   GameBoard[0, 6] == null)
+                {
+                    GameBoard[0, 4] = GameBoard[0, 7];
+                    GameBoard[0, 5] = GameBoard[0, 3];
+                    GameBoard[0, 7] = null;
+                    GameBoard[0, 3] = null;
+
+                    ToMove = Color.Black;
+
+
+
+                }
+            }
+            else if (c == Color.Black)
+            {
+                if (GameBoard[7, 7] != null &&
+                    GameBoard[7, 7].Name == ChessPieceName.Rook &&
+                    !GameBoard[7, 7].WasAlreadyMoved &&
+                    GameBoard[7, 3] != null &&
+                    GameBoard[7, 3].Name == ChessPieceName.King &&
+                   !GameBoard[7, 3].WasAlreadyMoved &&
+                   GameBoard[7, 4] == null &&
+                   GameBoard[7, 5] == null &&
+                  GameBoard[7, 6] == null)
+                {
+                    GameBoard[7, 4] = GameBoard[7, 7];
+                    GameBoard[7, 5] = GameBoard[7, 3];
+                    GameBoard[7, 7] = null;
+                    GameBoard[7, 3] = null;
+
+                    ToMove = Color.White;
+
+
+
+                }
+            }
         }
         public void ShortCastling(Color c)
         {
-            throw new NotImplementedException();
+            if (c == Color.White)
+            {
+                if (GameBoard[0, 0] != null &&
+                    GameBoard[0, 0].Name == ChessPieceName.Rook &&
+                    !GameBoard[0, 0].WasAlreadyMoved &&
+                    GameBoard[0, 3] != null &&
+                    GameBoard[0, 3].Name == ChessPieceName.King &&
+                    !GameBoard[0, 3].WasAlreadyMoved &&
+                    GameBoard[0, 1] == null &&
+                    GameBoard[0, 2] == null)
+                {
+                    GameBoard[0, 2] = GameBoard[0, 0];
+                    GameBoard[0, 1] = GameBoard[0, 3];
+                    GameBoard[0, 0] = null;
+                    GameBoard[0, 3] = null;
+
+                    ToMove = Color.Black;
+
+
+
+                }
+            }
+            else if (c == Color.Black)
+            {
+                if (GameBoard[7, 0] != null &&
+                   GameBoard[7, 0].Name == ChessPieceName.Rook &&
+                   !GameBoard[7, 0].WasAlreadyMoved &&
+                   GameBoard[7, 3] != null &&
+                   GameBoard[7, 3].Name == ChessPieceName.King &&
+                   !GameBoard[7, 3].WasAlreadyMoved &&
+                   GameBoard[7, 1] == null &&
+                   GameBoard[7, 2] == null)
+                {
+                    GameBoard[7, 2] = GameBoard[7, 0];
+                    GameBoard[7, 1] = GameBoard[7, 3];
+                    GameBoard[7, 0] = null;
+                    GameBoard[7, 3] = null;
+
+                    ToMove = Color.White;
+
+
+                }
+            }
         }
 
         public Color? FindCheckmate(Color color)

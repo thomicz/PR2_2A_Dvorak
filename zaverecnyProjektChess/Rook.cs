@@ -11,7 +11,7 @@
 
         public override ChessPieceName Name { get => ChessPieceName.Rook; }
         public override Color Color => _color;
-        public bool WasAlreadyMoved = false;
+        public  bool WasAlreadyMoved { get; set; } = false;
 
 
         public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
@@ -90,6 +90,7 @@
                 }
             }
 
+            WasAlreadyMoved = true;
             return true;
 
         }

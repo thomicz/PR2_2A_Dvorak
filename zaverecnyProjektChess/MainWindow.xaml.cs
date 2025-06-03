@@ -15,12 +15,46 @@ namespace zaverecnyProjektChess
         private Point? secondClick = null;
         private Board b;
 
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.S)
+            {
+                if (b.ToMove == Color.White)
+                {
+                    b.ShortCastling(Color.White);
+                    UpdateBoard();
+                }
+                else if (b.ToMove == Color.Black)
+                {
+                    b.ShortCastling(Color.Black);
+                    UpdateBoard();
+                }
+
+            }
+            else if (e.Key == Key.L)
+            {
+                if (b.ToMove == Color.White)
+                {
+                    b.LongCastling(Color.White);
+                    UpdateBoard();
+                }
+                else if (b.ToMove == Color.Black)
+                {
+                    b.LongCastling(Color.Black);
+                    UpdateBoard();
+                }
+            }
+        }
+
         public MainWindow()
         {
-
             b = new Board();
 
             InitializeComponent();
+
+            this.KeyDown += MainWindow_KeyDown;
+            this.Focusable = true;
+            this.Focus();
 
 
             for (int i = 0; i < 8; i++)
@@ -186,17 +220,21 @@ namespace zaverecnyProjektChess
 
                 firstClick = null;
                 secondClick = null;
-               
+
                 //Aktualizace UI
                 UpdateBoard();
 
                 if (b.FindCheckmate(Color.White) == Color.White)
                 {
                     MessageBox.Show("Bílý král je v šach matu! Černý vyhrává!");
+                    Application.Current.Shutdown();
+
                 }
                 if (b.FindCheckmate(Color.Black) == Color.Black)
                 {
                     MessageBox.Show("Černý král je v šach matu! Bílý vyhrává!");
+                    Application.Current.Shutdown();
+
                 }
             }
         }

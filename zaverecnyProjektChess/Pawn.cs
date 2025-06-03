@@ -11,7 +11,7 @@
 
         public override ChessPieceName Name { get => ChessPieceName.Pawn; }
         public override Color Color => _color;
-        public bool WasAlreadyMoved = false;
+        public  bool WasAlreadyMoved = false;
 
         public override bool Move(int fx, int fy, int sx, int sy, ChessPiece[,] board)
         {
